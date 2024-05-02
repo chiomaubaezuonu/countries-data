@@ -8,6 +8,9 @@ interface Countries {
     common: string,
     official: string
   },
+  flags: {
+    svg: string
+  },
   region: string,
   population: string
 }
@@ -24,9 +27,9 @@ function App() {
 
   return (
     <div className="App">
-      lkjihugyt
       {countriesData && countriesData.map((country) => (
         <div key={country.name.official}>
+          <img width={240} src={country.flags.svg} alt='flag' />
           <p>{country.name.official}</p>
           <p>{country.region}</p>
           <p>{country.population.toLocaleString()}</p>
