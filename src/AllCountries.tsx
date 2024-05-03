@@ -16,6 +16,7 @@ interface Countries {
     population: string,
     borders: string[];
 }
+const regions = [Asia, Africa, Americas, Oceania, Europe, Antarctic]
 function AllCountries() {
 
     const [countriesData, setCountriesData] = useState<Countries[]>([])
