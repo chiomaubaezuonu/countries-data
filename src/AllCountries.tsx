@@ -19,11 +19,22 @@ interface Countries {
     population: string,
     borders: string[];
 }
-const regions = [Asia, Africa, Americas, Oceania, Europe, Antarctic]
+interface Regions {
+    Asia: string,
+    Africa: string,
+    Americas: string,
+    Oceania: string,
+    Europe: string,
+    Antarctic: string
+}
+//const regions: Regions = [Asia, Africa, Americas, Oceania, Europe, Antarctic]
+
 function AllCountries() {
 
     const [countriesData, setCountriesData] = useState<Countries[]>([])
     const [searchCountry, setSearchCountry] = useState<string>("")
+    const [regions, setRegions] = useState<Regions>("")
+
     useEffect(() => {
         axios.get("https://restcountries.com/v3.1/all")
             .then(response => {
@@ -31,7 +42,7 @@ function AllCountries() {
             })
     }, [])
 
-     function getCountry() {
+    function getCountry() {
         axios.get(`https://restcountries.com/v3.1/name/${searchCountry}`)
             .then(response => {
                 setCountriesData(response.data)
@@ -56,8 +67,8 @@ function AllCountries() {
                 <Select className="mt-6"
                     value={region}
                     style={{ width: 120 }}
-                   onChange={(newRegion) => setRegion(newRegion)}
-                  
+                    onChange={(newRegion) => setRegion(newRegion)}
+
                 >
 
                     <Option key="All" value="">
@@ -87,7 +98,7 @@ function AllCountries() {
                         </div>
                     </Link>
                 ))}
-              
+
             </div>
         </div>
     );
