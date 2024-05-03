@@ -13,7 +13,8 @@ interface Countries {
         svg: string
     },
     region: string,
-    population: string
+    population: string,
+    borders: string[];
 }
 function AllCountries() {
 
@@ -55,9 +56,14 @@ function AllCountries() {
                             <p>{country.name.official}</p>
                             <p>{country.region}</p>
                             <p>{country.population.toLocaleString()}</p>
+                            <div> Borders:{country.borders && country.borders.map((border) => {
+                                return <div>{border}
+                                </div>
+                            })}</div>
                         </div>
                     </Link>
                 ))}
+              
             </div>
         </div>
     );
