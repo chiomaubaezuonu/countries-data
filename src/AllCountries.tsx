@@ -80,10 +80,10 @@ function AllCountries() {
                         id='search'
                         placeholder="Search for a country by it's name"/>
                 </form>
-                <Space wrap>
+                {/* <Space wrap> */}
                     <Select  className="mt-6"
                         // value={region}
-                        style={{ width: 120 }}
+                        style={{ width: 210 }}
                     // onChange={(newRegion) => handleRegion()}
 
                     >
@@ -99,7 +99,7 @@ function AllCountries() {
                         <Option key="Oceania" value='Oceania'>Oceania</Option>
 
                     </Select>
-                </Space>
+                {/* </Space> */}
             </div>
             <div className='countries-data-div'>
                 {countriesData && countriesData.map((country) => (
