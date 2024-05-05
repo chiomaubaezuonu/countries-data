@@ -72,16 +72,16 @@ function AllCountries() {
     return (
         <div className='main-page-container'>
             <div className="form-div">
-                <form onSubmit={handleForm}>
+                <form className="form" onSubmit={handleForm}>
                     <input type='text'
                         value={searchCountry}
                         onChange={(event) => setSearchCountry(event.target.value)}
                         name="search"
                         id='search'
-                        placeholder='Search Country' />
+                        placeholder="Search for a country by it's name"/>
                 </form>
                 <Space wrap>
-                    <Select className="mt-6"
+                    <Select  className="mt-6"
                         // value={region}
                         style={{ width: 120 }}
                     // onChange={(newRegion) => handleRegion()}
@@ -101,10 +101,10 @@ function AllCountries() {
                     </Select>
                 </Space>
             </div>
-            <div>
+            <div className='countries-data-div'>
                 {countriesData && countriesData.map((country) => (
                     <Link to={`/${country.name.common}`} key={country.name.official}>
-                        <div>
+                        <div className='card'>
                             <img width={240} src={country.flags.svg} alt='flag' />
                             <p>Name: {country.name.official}</p>
                             <p>Region: {country.region}</p>
