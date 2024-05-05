@@ -3,6 +3,7 @@ import './App.css';
 import axios from "axios"
 import { Link } from 'react-router-dom';
 import { Select, Space } from 'antd';
+import Search from 'antd/es/transfer/search';
 
 
 const { Option } = Select;
@@ -19,22 +20,26 @@ interface Countries {
     population: string,
     borders: string[];
 }
+
+// Asia: string,
+// Africa: string,
+// Americas: string,
+// Oceania: string,
+// Europe: string,
+// Antarctic: string
+// }
+
 interface Regions {
-    Asia: string,
-    Africa: string,
-    Americas: string,
-    Oceania: string,
-    Europe: string,
-    Antarctic: string
+    regionsArray: string
 }
-//const regions: Regions = [Asia, Africa, Americas, Oceania, Europe, Antarctic]
+const regionsArray = ["Asia", "Africa", "Americas", "Oceania", "Europe", "Antarctic"]
 
 function AllCountries() {
 
+
+    // const [region, setRegion] = useState<Regions>("")
     const [countriesData, setCountriesData] = useState<Countries[]>([])
     const [searchCountry, setSearchCountry] = useState<string>("")
-    const [regions, setRegions] = useState<Regions>("")
-
     useEffect(() => {
         axios.get("https://restcountries.com/v3.1/all")
             .then(response => {
@@ -42,55 +47,68 @@ function AllCountries() {
             })
     }, [])
 
+    // Search by country
     function getCountry() {
         axios.get(`https://restcountries.com/v3.1/name/${searchCountry}`)
             .then(response => {
                 setCountriesData(response.data)
             })
     }
+    // Filter by Region
+    // const handleRegion = () => {
+    //     axios.get("https://restcountries.com/v3.1/region/{region}")
+    //         // axios.get("https://restcountries.com/v3.1/region/europe")
+    //         .then(response => {
+    //             setCountriesData(response.data)
+    //             console.log(response.data)
+    //         })
+    // }
+
     const handleForm = (event: any) => {
         event.preventDefault();
         getCountry();
     }
 
     return (
-        <div>
-            <form onSubmit={handleForm}>
-                <input type='text'
-                    value={searchCountry}
-                    onChange={(event) => setSearchCountry(event.target.value)}
-                    name="search"
-                    id='search'
-                    placeholder='Search Country' />
-            </form>
-            <Space wrap>
-                <Select className="mt-6"
-                    value={region}
-                    style={{ width: 120 }}
-                    onChange={(newRegion) => setRegion(newRegion)}
+        <div className='main-page-container'>
+            <div className="form-div">
+                <form onSubmit={handleForm}>
+                    <input type='text'
+                        value={searchCountry}
+                        onChange={(event) => setSearchCountry(event.target.value)}
+                        name="search"
+                        id='search'
+                        placeholder='Search Country' />
+                </form>
+                <Space wrap>
+                    <Select className="mt-6"
+                        // value={region}
+                        style={{ width: 120 }}
+                    // onChange={(newRegion) => handleRegion()}
 
-                >
+                    >
 
-                    <Option key="All" value="">
-                        All orders
-                    </Option>
-                    <Option key="Asia" value="Asia"> Asia</Option>
-                    <Option key="Africa" value="Africa"> Africa</Option>
-                    <Option key="Americas" value="Americas"> Americas</Option>
-                    <Option key="Antarctic" value="Antarctic"> Antarctic</Option>
-                    <Option key="Europe" value="Europe"> Europe</Option>
-                    <Option key="Oceania" value='Oceania'>Oceania</Option>
+                        <Option key="All" value="">
+                            All Regions
+                        </Option>
+                        <Option key="Asia" value="Asia"> Asia</Option>
+                        <Option key="Africa" value="Africa"> Africa</Option>
+                        <Option key="Americas" value="Americas"> Americas</Option>
+                        <Option key="Antarctic" value="Antarctic"> Antarctic</Option>
+                        <Option key="Europe" value="Europe"> Europe</Option>
+                        <Option key="Oceania" value='Oceania'>Oceania</Option>
 
-                </Select>
-            </Space>
+                    </Select>
+                </Space>
+            </div>
             <div>
                 {countriesData && countriesData.map((country) => (
                     <Link to={`/${country.name.common}`} key={country.name.official}>
                         <div>
                             <img width={240} src={country.flags.svg} alt='flag' />
-                            <p>{country.name.official}</p>
-                            <p>{country.region}</p>
-                            <p>{country.population.toLocaleString()}</p>
+                            <p>Name: {country.name.official}</p>
+                            <p>Region: {country.region}</p>
+                            <p>Population: {country.population.toLocaleString()}</p>
                             <div> Borders:{country.borders && country.borders.map((border) => {
                                 return <div>{border}
                                 </div>
