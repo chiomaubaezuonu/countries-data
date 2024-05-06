@@ -18,7 +18,8 @@ interface Countries {
     },
     region: string,
     population: string,
-    borders: string[];
+    subregion: string,
+    borders: string[]
 }
 
 // Asia: string,
@@ -78,27 +79,27 @@ function AllCountries() {
                         onChange={(event) => setSearchCountry(event.target.value)}
                         name="search"
                         id='search'
-                        placeholder="Search for a country by it's name"/>
+                        placeholder="Search for a country by it's name" />
                 </form>
                 {/* <Space wrap> */}
-                    <Select  className="mt-6"
-                        // value={region}
-                        style={{ width: 210 }}
-                    // onChange={(newRegion) => handleRegion()}
+                <Select className="mt-6"
+                    // value={region}
+                    style={{ width: 210 }}
+                // onChange={(newRegion) => handleRegion()}
 
-                    >
+                >
 
-                        <Option key="All" value="">
-                            All Regions
-                        </Option>
-                        <Option key="Asia" value="Asia"> Asia</Option>
-                        <Option key="Africa" value="Africa"> Africa</Option>
-                        <Option key="Americas" value="Americas"> Americas</Option>
-                        <Option key="Antarctic" value="Antarctic"> Antarctic</Option>
-                        <Option key="Europe" value="Europe"> Europe</Option>
-                        <Option key="Oceania" value='Oceania'>Oceania</Option>
+                    <Option key="All" value="">
+                        All Regions
+                    </Option>
+                    <Option key="Asia" value="Asia"> Asia</Option>
+                    <Option key="Africa" value="Africa"> Africa</Option>
+                    <Option key="Americas" value="Americas"> Americas</Option>
+                    <Option key="Antarctic" value="Antarctic"> Antarctic</Option>
+                    <Option key="Europe" value="Europe"> Europe</Option>
+                    <Option key="Oceania" value='Oceania'>Oceania</Option>
 
-                    </Select>
+                </Select>
                 {/* </Space> */}
             </div>
             <div className='countries-data-div'>
@@ -106,13 +107,16 @@ function AllCountries() {
                     <Link to={`/${country.name.common}`} key={country.name.official}>
                         <div className='card'>
                             <img width={240} src={country.flags.svg} alt='flag' />
-                            <p>Name: {country.name.official}</p>
-                            <p>Region: {country.region}</p>
-                            <p>Population: {country.population.toLocaleString()}</p>
-                            <div> Borders:{country.borders && country.borders.map((border) => {
-                                return <div>{border}
-                                </div>
-                            })}</div>
+                            <div className='country-data-div'>
+                                <h2 className='country-name'>{country.name.common}</h2>
+                                <p className='country-data'>Population: {country.population.toLocaleString()}</p>
+                                <p className='country-data'>Region: {country.region}</p>
+                                <p className='country-data'>Subregion: {country.subregion}</p>
+                                <div> Borders:{country.borders && country.borders.map((border) => {
+                                    return <div>{border}
+                                    </div>
+                                })}</div>
+                            </div>
                         </div>
                     </Link>
                 ))}
