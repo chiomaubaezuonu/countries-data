@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import "./App.css"
 
 interface CountryData {
@@ -35,7 +35,9 @@ const IndividualCountry = () => {
             {
                 singleCountry && singleCountry.map((eachCountry) => (
                     <div className='individual-country-card' key={eachCountry.name.common}>
-                        <img className='flag' width={100} src={eachCountry.flags.svg} alt='flag' />
+                        <div className='img-div'>
+                            <img className='flag' src={eachCountry.flags.svg} alt='flag' />
+                        </div>
                         <div className="individual-country-data-div">
                             <div className="individual-country-data">
                                 <h2 className='individual-country-name'>{eachCountry.name.official}</h2>
@@ -45,13 +47,17 @@ const IndividualCountry = () => {
                                 <p>Subregion: {eachCountry.subregion}</p>
                             </div>
                             <div className='borders-div'>
-                                <h3>Borders: </h3>
+
                                 <div className='country-border'>
                                     {eachCountry.borders && eachCountry.borders.map((border) => {
-                                        return <p>{border}</p>
+
+                                        return <div>
+                                            <h3>Borders: </h3>
+                                            <p>{border}</p>
+                                        </div>
                                     })}</div>
                             </div>
-                            <button className='back-btn'>&larr; Back</button>
+                            <Link to="/"><button className='back-btn'>&larr; Back</button></Link>
                         </div>
                     </div>
 
