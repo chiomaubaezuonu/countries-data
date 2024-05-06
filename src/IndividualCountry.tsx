@@ -13,7 +13,7 @@ interface CountryData {
     capital: string[],
     region: string,
     population: string,
-    border: string[],
+    borders: string[],
     subregion: string[]
 }
 
@@ -40,6 +40,10 @@ const IndividualCountry = () => {
                         <p>Population: {eachCountry.population.toLocaleString()}</p>
                         <p> Region: {eachCountry.region}</p>
                         <p>Subregion: {eachCountry.subregion}</p>
+                        <div> Borders:{eachCountry.borders && eachCountry.borders.map((border) => {
+                                    return <div>{border}
+                                    </div>
+                                })}</div>
                     </div>
 
                 ))

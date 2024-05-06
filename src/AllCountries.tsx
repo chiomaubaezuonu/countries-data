@@ -112,10 +112,6 @@ function AllCountries() {
                                 <p className='country-data'>Population: {country.population.toLocaleString()}</p>
                                 <p className='country-data'>Region: {country.region}</p>
                                 <p className='country-data'>Subregion: {country.subregion}</p>
-                                <div> Borders:{country.borders && country.borders.map((border) => {
-                                    return <div>{border}
-                                    </div>
-                                })}</div>
                             </div>
                         </div>
                     </Link>
