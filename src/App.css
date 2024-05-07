@@ -157,7 +157,10 @@ img {
   margin-bottom: 0.8rem;
 }
 
-
+.borders-div {
+  /* padding: 1rem;
+  background-color: yellow; */
+}
 
 .borders-div h3 {
   font-weight: 700;
@@ -203,22 +206,17 @@ img {
 
 
 @media (max-width: 600px) {
-  body {
+  body{
     background-color: rgb(243 244 246);
-
   }
-
   .main-page-container {
-    width: 85%;
+    width: 100%;
     padding: 1.5rem 0.7rem;
-    display: block;
-    margin-left: 0;
-    margin-right: 0;
   }
 
   .form-div {
     display: block;
-    width: 100%;
+
   }
 
   .form {
@@ -228,36 +226,35 @@ img {
   }
 
   .countries-data-div {
+   display: block;
+    width: 100%;
+  }
+  .country-data{
     display: block;
-    width: 100%;
+  
+    width: 80%;
   }
-
-  .country-data {
-    display: block;
-    width: 100%;
-  }
-
-  .card {
-    width: 100%;
-    margin-bottom: 0.5rem;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* img {
-    width: 25vw;
-    height: 54vw;
-    object-fit: cover;
-  } */
-
-  .countries-data-div {
-    width: 100%;
-  }
-
-  .country-data {
-    height: 100%;
-    margin-bottom: 0.3rem;
-  }
+/* a{
+  width: 80%;
+} */
+.card{
+  width: 100%;
+  margin-bottom: 0.5rem;
+  height: 85vw;
+  object-fit: cover;
+}
+img{
+  width: 30vw;
+  height: 54vw;
+  object-fit: cover;
+}
+.countries-data-div{
+  width: 100%;
+}
+.country-data{
+  height: 100%;
+  margin-bottom: 0.3rem;
+}
 }
 
 /* for individual country page */
@@ -281,8 +278,7 @@ img {
   .flag {
     width: 120vw;
   }
-
-  /* a{
+/* a{
   width: 100%;
 } */
   img {
