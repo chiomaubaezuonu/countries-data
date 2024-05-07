@@ -106,7 +106,7 @@ function AllCountries() {
                 {countriesData && countriesData.map((country) => (
                     <Link to={`/${country.name.common}`} key={country.name.official}>
                         <div className='card'>
-                            <img width={240} src={country.flags.svg} alt='flag' />
+                            <img  src={country.flags.svg} alt='flag' />
                             <div className='country-data-div'>
                                 <h2 className='country-name'>{country.name.common}</h2>
                                 <p className='country-data'>Population: {country.population.toLocaleString()}</p>
