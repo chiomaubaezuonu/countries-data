@@ -30,15 +30,15 @@ interface Countries {
 // Antarctic: string
 // }
 
-interface Regions {
-    regionsArray: string
-}
-const regionsArray = ["Asia", "Africa", "Americas", "Oceania", "Europe", "Antarctic"]
+// interface Regions {
+//     regionsArray: string
+// }
+// const regionsArray = ["Asia", "Africa", "Americas", "Oceania", "Europe", "Antarctic"]
 
 function AllCountries() {
 
 
-    // const [region, setRegion] = useState<Regions>("")
+     const [region, setRegion] = useState<string>("")
     const [countriesData, setCountriesData] = useState<Countries[]>([])
     const [searchCountry, setSearchCountry] = useState<string>("")
     useEffect(() => {
@@ -64,7 +64,10 @@ function AllCountries() {
     //             console.log(response.data)
     //         })
     // }
-
+const handleRegion:any = () =>{
+const n = setRegion(region)
+alert(n)
+}
     const handleForm = (event: any) => {
         event.preventDefault();
         getCountry();
@@ -83,13 +86,14 @@ function AllCountries() {
                 </form>
                 {/* <Space wrap> */}
                 <Select className="mt-6"
-                    // value={region}
+                
+                    value={region}
                     style={{ width: 210 }}
-                // onChange={(newRegion) => handleRegion()}
+                 onChange={(newRegion) => handleRegion()}
 
                 >
 
-                    <Option key="All" value="">
+                    <Option key="All Regions" value="">
                         All Regions
                     </Option>
                     <Option key="Asia" value="Asia"> Asia</Option>
