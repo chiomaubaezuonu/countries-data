@@ -22,19 +22,25 @@ interface Countries {
     borders: string[]
 }
 
+// Asia: string,
+// Africa: string,
+// Americas: string,
+// Oceania: string,
+// Europe: string,
+// Antarctic: string
+// }
 
-
-interface Regions {
-    name: string
-}
- const regionsArray = ["Asia", "Africa", "Americas", "Oceania", "Europe", "Antarctic"]
+// interface Regions {
+//     regionsArray: string
+// }
+// const regionsArray = ["Asia", "Africa", "Americas", "Oceania", "Europe", "Antarctic"]
 
 function AllCountries() {
 
 
-    const [region, setRegion] = useState<string>("")
+     const [region, setRegion] = useState<string>("")
     const [countriesData, setCountriesData] = useState<Countries[]>([])
-    const [searchCountry, setSearchCountry] = useState([])
+    const [searchCountry, setSearchCountry] = useState<string>("")
     useEffect(() => {
         axios.get("https://restcountries.com/v3.1/all")
             .then(response => {
@@ -49,10 +55,16 @@ function AllCountries() {
                 setCountriesData(response.data)
             })
     }
-
     // Filter by Region
-
-    //    country search
+    const handleRegion = () => {
+        axios.get("https://restcountries.com/v3.1/region")
+            // axios.get("https://restcountries.com/v3.1/region/europe")
+            .then(response => {
+                setRegion(response.data)
+                
+            })
+    }
+    console.log(region)
     const handleForm = (event: any) => {
         event.preventDefault();
         getCountry();
@@ -64,28 +76,22 @@ function AllCountries() {
                 <form className="form" onSubmit={handleForm}>
                     <input type='text'
                         value={searchCountry}
-                        // onChange={(event) => setSearchCountry(event.target.value)}
+                         onChange={(event) => setSearchCountry(event.target.value)}
                         name="search"
                         id='search'
                         placeholder="Search for a country by it's name" />
                 </form>
                 {/* <Space wrap> */}
                 <Select className="mt-6"
-
+                
                     value={region}
                     style={{ width: 210 }}
-                    onChange={(newRegion:any) => {
-                        setRegion(newRegion);
-                        if(newRegion){
-                            setCountriesData(countriesData.filter((item) =>{
-                                return newRegion === item.region
-                            }))
-                        }
-                    }}
+                 onChange={(newRegion) => handleRegion()}
+
                 >
 
                     <Option key="All Regions" value="">
-                        Filter by Regions
+                        All Regions
                     </Option>
                     <Option key="Asia" value="Asia"> Asia</Option>
                     <Option key="Africa" value="Africa"> Africa</Option>
@@ -101,7 +107,7 @@ function AllCountries() {
                 {countriesData && countriesData.map((country) => (
                     <Link to={`/${country.name.common}`} key={country.name.official}>
                         <div className='card'>
-                            <img src={country.flags.svg} alt='flag' />
+                            <img  src={country.flags.svg} alt='flag' />
                             <div className='country-data-div'>
                                 <h2 className='country-name'>{country.name.common}</h2>
                                 <p className='country-data'>Population: {country.population.toLocaleString()}</p>
@@ -118,7 +124,3 @@ function AllCountries() {
 }
 
 export default AllCountries;
-
-
-
-

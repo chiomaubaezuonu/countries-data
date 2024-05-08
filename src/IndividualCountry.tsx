@@ -35,9 +35,9 @@ const IndividualCountry = () => {
             {
                 singleCountry && singleCountry.map((eachCountry) => (
                     <div className='individual-country-card' key={eachCountry.name.common}>
-                        <div className='img-div'>
+                        {/* <div className='img-div'> */}
                             <img className='flag' src={eachCountry.flags.svg} alt='flag' />
-                        </div>
+                        {/* </div> */}
                         <div className="individual-country-data-div">
                             <div className="individual-country-data">
                                 <h2 className='individual-country-name'>{eachCountry.name.official}</h2>
