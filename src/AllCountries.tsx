@@ -49,17 +49,17 @@ function AllCountries() {
     }
     // Filter by Region
     useEffect(() => {
-      if(region){
-        axios.get(`https://restcountries.com/v3.1/region/${region}`)
-        .then(response => {
-            setCountriesData(response.data)
-        })
-      }
+        if (region) {
+            axios.get(`https://restcountries.com/v3.1/region/${region}`)
+                .then(response => {
+                    setCountriesData(response.data)
+                })
+        }
     }, [region])
 
 
     // for countries
-    const handleForm = (event: any) => {
+    const handleForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         getCountry();
     }
@@ -77,12 +77,11 @@ function AllCountries() {
                 </form>
                 {/* <Space wrap> */}
                 <Select className="mt-6"
-
                     value={region}
                     style={{ width: 210 }}
                     onChange={(newRegion) => setRegion(newRegion)}
                 >
-                    <Option key="All Regions" value="">All Regions</Option>
+                    <Option key="AllRegions" value="">All Regions</Option>
                     <Option key="Asia" value="Asia"> Asia</Option>
                     <Option key="Africa" value="Africa"> Africa</Option>
                     <Option key="Americas" value="Americas"> Americas</Option>
